@@ -1,0 +1,21 @@
+public class ProfileUpdateTest extends BaseTest {
+    
+    @Test
+    public void updateProfileTest() {
+        // Login to the application
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = loginPage.login("user@example.com", "password");
+
+        // Navigate to Profile section
+        ProfilePage profilePage = homePage.goToProfile();
+
+        // Update profile information
+        profilePage.updateProfile("New Name", "new.email@example.com", "New Address");
+
+        // Save changes
+        profilePage.saveProfile();
+
+        // Assert that the update was successful
+        Assert.assertTrue(profilePage.isUpdateSuccessMessageDisplayed(), "Profile update failed!");
+    }
+}
