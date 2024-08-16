@@ -1,0 +1,42 @@
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class ProfileUpdateTest extends BaseTest {
+
+    @Test
+    public void updateProfileTest() {
+        // Start the ExtentTest for this specific test case
+        test = extent.createTest("Update Profile Test", "Test the profile update functionality");
+
+        // Log the beginning of the test
+        test.info("Navigating to the login page.");
+
+        // Login to the application
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = loginPage.login("user@example.com", "password");
+
+        test.info("Successfully logged in.");
+
+        // Navigate to Profile section
+        ProfilePage profilePage = homePage.goToProfile();
+
+        // Update profile information
+        profilePage.updateProfile("New Name", "new.email@example.com", "New Address");
+
+        test.info("Updated profile with new information.");
+
+        // Save changes
+        profilePage.saveProfile();
+
+        // Assert that the update was successful
+        boolean isSuccess = profilePage.isUpdateSuccessMessageDisplayed();
+        Assert.assertTrue(isSuccess, "Profile update failed!");
+
+        // Log the result
+        if (isSuccess) {
+            test.pass("Profile update test passed.");
+        } else {
+            test.fail("Profile update test failed.");
+        }
+    }
+}
