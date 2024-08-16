@@ -1,0 +1,28 @@
+Test Case 2: Emotional Will Creation and Deletion
+public class EmotionalWillTest extends BaseTest {
+    
+    @Test
+    public void createAndDeleteWillTest() {
+        // Login to the application
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = loginPage.login("user@example.com", "password");
+
+        // Navigate to Emotional Will section
+        EmotionalWillPage willPage = homePage.goToEmotionalWill();
+
+        // Create a new Emotional Will
+        willPage.createWill("Test Will", "This is a test will.", "text");
+
+        // Save the Will
+        willPage.saveWill();
+
+        // Assert that the Will is created
+        Assert.assertTrue(willPage.isWillCreated("Test Will"), "Will creation failed!");
+
+        // Delete the Will
+        willPage.deleteWill("Test Will");
+
+        // Assert that the Will is deleted
+        Assert.assertTrue(willPage.isWillDeleted("Test Will"), "Will deletion failed!");
+    }
+}
