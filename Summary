@@ -1,0 +1,4 @@
+This report covers the automation of key functionalities of the MittArv website post-login area, using Java and Selenium WebDriver. 
+The tests ensure that critical features such as profile updates and the creation and deletion of emotional wills are functioning correctly. 
+
+
